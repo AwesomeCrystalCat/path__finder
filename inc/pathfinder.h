@@ -10,7 +10,8 @@ char **mx_find_uniques(char **str);
 bool mx_is_elem(char **arr, char *str);
 int mx_get_index(char *str, char **uniques);
 int *mx_str_to_int(char **str, char **uniques);
-void print_matrix(int **matrix); //remove this function after finish project
+void print_matrix(int **matrix); //remove this function after finishing project
+int **mx_init_matrix(int num);
 int **mx_create_matrix(int *nums);
 
 #endif

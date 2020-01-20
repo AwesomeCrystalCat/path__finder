@@ -44,15 +44,15 @@ int *mx_dijkstra(int **arr, int num) {
 
     costs[0] = 0;
     for (; i != -1;) {
-        printf("iteration - %d\n", count++ );
+        // printf("iteration - %d\n", count++ );
         for (j = 0; j < num; j++) {
-            printf("costs j%d = %d + %d\n", costs[j], costs[i], arr[i][j]);
+            // printf("costs j%d = %d + %d\n", costs[j], costs[i], arr[i][j]);
             if (arr[i][j] != -1 && visited[i] == -1 && visited[j] == -1 && arr[i][j] + costs[i] < costs[j]) {
 
 
-                        printf("\n");
-                        printf("arr[i][j] = %d\n", arr[i][j]);
-                        printf("costs i = %d\n", costs[i]);
+                        // printf("\n");
+                        // printf("arr[i][j] = %d\n", arr[i][j]);
+                        // printf("costs i = %d\n", costs[i]);
                         
                         
                         costs[j] = costs[i] + arr[i][j];
@@ -65,7 +65,7 @@ int *mx_dijkstra(int **arr, int num) {
             // for (int i = 0; visited[i] != -2147483648; i++)
             //     printf("*%d*\n", visited[i]); 
             i = get_min(costs, visited, costs[i]);
-            printf("i = %d\n", i);
+            // printf("i = %d\n", i);
             // cur = i;
     }
     return costs;
@@ -78,13 +78,13 @@ int main(int argc, char **argv) {
     int **matrix = mx_create_matrix(numbers);
     int islands = numbers[0];
     // int **parents = mx_create_matrix(numbers);
-    free(numbers);
+    // free(numbers);
     mx_del_strarr(&str);
-    // int *costs = mx_dijkstra(matrix, islands);
-    // for (int i = 0; i <= 5; i++) {
-    //     printf("%d\n", costs[i]);
-    // }
-    print_matrix(matrix);
+    int *costs = mx_dijkstra(matrix, islands);
+    for (int i = 0; costs[i] != -2147483648; i++) {
+        printf("%d\n", costs[i]);
+    }
+    // print_matrix(matrix);
     // int *costs = mx_dijkstra(matrix, islands);
     // system("leaks -q pathfinder");
     return 0;

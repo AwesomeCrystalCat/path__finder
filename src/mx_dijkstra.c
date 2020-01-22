@@ -12,6 +12,7 @@ static bool checker(int *visited) {
 
 static int *create_arr(int n, int val) {
     int *arr = (int *)malloc(sizeof(int) * (n + 1));
+
     arr[n] = -2147483648;
     for (int i = 0; arr[i] != -2147483648; i++)
         arr[i] = val;
@@ -47,8 +48,8 @@ int *mx_dijkstra(int **arr, int num, int **pred) {
         for (j = i + 1; j < num; j++) {
             if (arr[i][j] != -1) {
                 pred[i][j] = i;
-                if (visited[i] == -1 && visited[j] == -1
-                && arr[i][j] + costs[i] < costs[j])
+                pred[j][i] = pred[i][j];
+                if (visited[i] == -1 && arr[i][j] + costs[i] < costs[j])
                     costs[j] = costs[i] + arr[i][j];
             }
         }

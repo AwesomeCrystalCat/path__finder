@@ -6,11 +6,10 @@ char **mx_find_uniques(char **str) {
     char **uniques = (char **)malloc(sizeof(char *) * (len)); //initialize array of pointers
 
     uniques[len] = NULL;
-    for (int i = 0; uniques[i] != NULL; i++)
+    for (int i = 0; i < len; i++)
         uniques[i] = mx_strdup("\0");
     for (int i = 1; n < len; i++) {
         if (mx_is_elem(uniques, str[i]) == true && i % 3 != 0) {
-            free(uniques[n]);
             uniques[n] = mx_strdup(str[i]); //uniques created
             n++;
         }

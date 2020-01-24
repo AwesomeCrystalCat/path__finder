@@ -1,4 +1,5 @@
 #include "pathfinder.h"
+#include <stdio.h>
 
 static bool checker(int *visited) {
     int count = 0;
@@ -36,21 +37,24 @@ static int get_min(int *costs, int *visited, int c_min) {
     return - 1;
 }
 
-int *mx_dijkstra(int **arr, int num, int **pred) {
+int *mx_dijkstra(int **arr, int num, int **pred, int cur) { //add one more veriable
     int *costs = create_arr(num, 2147483647);
     int *visited = create_arr(num, -1);
-    int i = 0;
-    int j;
-    int count = 0;
+    int i = cur;
+    int j = 0;
+    int k = 0;
 
-    costs[0] = 0;
+    costs[i] = 0;
     while (i != -1) {
-        for (j = i + 1; j < num; j++) {
-            if (arr[i][j] != -1) {
+        for (j = 0; j < num; j++) {
+            if (arr[i][j] != -1 && arr[i][j] + costs[i] < costs[j]) {
+                for (k = 0; k < i; k++)
+                    pred[k][j] = -1;
+            }
+            if (arr[i][j] != -1 && visited[i] == -1 && visited[j] == -1
+                && arr[i][j] + costs[i] <= costs[j]) {
                 pred[i][j] = i;
-                pred[j][i] = pred[i][j];
-                if (visited[i] == -1 && arr[i][j] + costs[i] < costs[j])
-                    costs[j] = costs[i] + arr[i][j];
+                costs[j] = costs[i] + arr[i][j];
             }
         }
         visited[i] = 1;
@@ -59,3 +63,8 @@ int *mx_dijkstra(int **arr, int num, int **pred) {
     free(visited);
     return costs;
 }
+            //B = 11, 0, 11, 5, 9
+            //C = 10, 11, 0, 5, 9 
+            //D = 16, 5, 6, 0, 4
+            //E = 20, 9, 10, 
+            //

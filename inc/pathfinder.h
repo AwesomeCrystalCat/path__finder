@@ -13,6 +13,6 @@ int *mx_str_to_int(char **str, char **uniques);
 void print_matrix(int **matrix); //remove this function after finishing project
 int **mx_init_matrix(int num);
 int **mx_create_matrix(int *nums);
-int *mx_dijkstra(int **arr, int num, int **pred);
+int *mx_dijkstra(int **arr, int num, int **pred, int cur);
 
 #endif

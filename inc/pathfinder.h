@@ -14,5 +14,6 @@ void print_matrix(int **matrix); //remove this function after finishing project
 int **mx_init_matrix(int num);
 int **mx_create_matrix(int *nums);
 int *mx_dijkstra(int **arr, int num, int **pred, int cur);
+int *mx_create_arr(int n, int val);
 
 #endif

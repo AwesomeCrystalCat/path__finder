@@ -11,15 +11,6 @@ static bool checker(int *visited) {
     return count == 0 ? false : true;
 }
 
-static int *create_arr(int n, int val) {
-    int *arr = (int *)malloc(sizeof(int) * (n + 1));
-
-    arr[n] = -2147483648;
-    for (int i = 0; arr[i] != -2147483648; i++)
-        arr[i] = val;
-    return arr;
-}
-
 static int get_min(int *costs, int *visited, int c_min) {
     int min = 2147483647;
     int index = 0;
@@ -38,22 +29,28 @@ static int get_min(int *costs, int *visited, int c_min) {
 }
 
 int *mx_dijkstra(int **arr, int num, int **pred, int cur) { //add one more veriable
-    int *costs = create_arr(num, 2147483647);
-    int *visited = create_arr(num, -1);
+    int *costs = mx_create_arr(num, 2147483647);
+    int *visited = mx_create_arr(num, -1);
     int i = cur;
     int j = 0;
     int k = 0;
+    i = 0;
 
     costs[i] = 0;
     while (i != -1) {
-        for (j = 0; j < num; j++) {
+        for (j = i + 1; j < num; j++) {
             if (arr[i][j] != -1 && arr[i][j] + costs[i] < costs[j]) {
                 for (k = 0; k < i; k++)
                     pred[k][j] = -1;
+                    pred[j][k] = pred[k][j];
+            }
+            if (arr[i][j] != -1) {
+                pred[i][j] = i;
+                pred[j][i] = pred[i][j];
             }
             if (arr[i][j] != -1 && visited[i] == -1 && visited[j] == -1
                 && arr[i][j] + costs[i] <= costs[j]) {
-                pred[i][j] = i;
+                // pred[i][j] = i;
                 costs[j] = costs[i] + arr[i][j];
             }
         }
@@ -68,3 +65,17 @@ int *mx_dijkstra(int **arr, int num, int **pred, int cur) { //add one more veria
             //D = 16, 5, 6, 0, 4
             //E = 20, 9, 10, 
             //
+
+//probably you gonna need this function, if it will work properly
+//void **build_preds() {
+//     for (int l = i + 1; l < num; l++) {
+//             if (arr[i][l] != -1 && arr[i][l] + costs[l] < costs[l]) {
+//                 for (k = 0; k < i; k++)
+//                     pred[k][l] = -1;
+//             }
+//             if (arr[i][l] != -1) {
+//                 pred[i][l] = i;
+//                 pred[l][i] = pred[i][l];
+//             }
+//         }
+// }

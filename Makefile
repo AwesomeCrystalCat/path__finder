@@ -18,6 +18,7 @@ SRCS = ./src/pathfinder.c \
 		./src/mx_init_matrix.c \
 		./src/mx_dijkstra.c \
 		./src/mx_create_arr.c \
+		./src/mx_floyd.c \
 
 SRCOUT = pathfinder.c \
 		mx_file_to_islands.c \
@@ -31,6 +32,7 @@ SRCOUT = pathfinder.c \
 		mx_init_matrix.c \
 		mx_dijkstra.c \
 		mx_create_arr.c \
+		mx_floyd.c \
 
 OBJS = ./obj/pathfinder.o \
 		./obj/mx_file_to_islands.o \
@@ -44,6 +46,7 @@ OBJS = ./obj/pathfinder.o \
 		./obj/mx_init_matrix.o \
 		./obj/mx_dijkstra.o \
 		./obj/mx_create_arr.o \
+		./obj/mx_floyd.o \
 
 OBJOUT = pathfinder.o \
 		mx_file_to_islands.o \
@@ -57,6 +60,7 @@ OBJOUT = pathfinder.o \
 		mx_init_matrix.o \
 		mx_dijkstra.o \
 		mx_create_arr.o \
+		mx_floyd.o \
 
 CFLAG = -std=c11 -Wall -Wextra -Wpedantic -Werror
 

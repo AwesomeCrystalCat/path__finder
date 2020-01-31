@@ -6,7 +6,7 @@ static char **create_arr(const char *file, int len) {
     char **result = NULL;
     char buff;
 
-    string = mx_strnew(len); //new string;
+    string = mx_strnew(len);
     for (int i = 0; read(fp, &buff, 1); i++) {
         if (buff == ',' || buff == '-' || buff == '\n')
             string[i] = '$';
@@ -15,8 +15,8 @@ static char **create_arr(const char *file, int len) {
     }
     string[len] = '\0';
     close(fp);
-    result = mx_strsplit(string, '$'); // new array still needed not freed
-    free(string); //freeing string;
+    result = mx_strsplit(string, '$');
+    free(string);
     return result;
 }
 

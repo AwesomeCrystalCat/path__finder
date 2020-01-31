@@ -34,7 +34,6 @@ int *mx_dijkstra(int **arr, int num, int **pred, int cur) { //add one more veria
     int i = cur;
     int j = 0;
     int k = 0;
-    i = 0;
 
     costs[i] = 0;
     while (i != -1) {
